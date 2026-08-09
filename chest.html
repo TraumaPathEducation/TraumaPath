@@ -554,14 +554,7 @@ function showStructure(key,button){
   document.getElementById("structureRole").textContent = s.role;
   document.getElementById("structureMovement").textContent = s.movement;
 }
-  document.querySelectorAll(".structure-btn")
-    .forEach(btn=>btn.classList.remove("active"));
-
-  button.classList.add("active");
-
-  document.getElementById("structureTitle").textContent = structures[key].title;
-  document.getElementById("structureText").textContent = structures[key].text;
-}
+  
 
 function showCondition(key,button){
   activeCondition = key;
