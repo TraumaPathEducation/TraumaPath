@@ -1,57 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>TraumaPath | Interactive Trauma Education</title>
 
-  <meta name="description"
-        content="TraumaPath is an interactive trauma anatomy and emergency education platform designed to help learners understand injuries, anatomy, and emergency response through visual learning.">
+  <meta
+    name="description"
+    content="TraumaPath is an interactive trauma anatomy and emergency education platform built to help learners understand injuries, anatomy, and response through visual learning."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6fbfd;
+      color: #183044;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b3c5d, #007f86);
+      color: white;
+      padding: 24px 8%;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .brand {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0b3c5d, #00979e);
+      color: white;
+      padding: 90px 8%;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #a8f1ee;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 1.15rem;
+      color: #e7fbfb;
+    }
+
+    .hero-button {
+      display: inline-block;
+      background: white;
+      color: #0b5565;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-2px);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 8%;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+      font-size: 2rem;
+      color: #0b3c5d;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      max-width: 720px;
+      margin: auto;
+      color: #567080;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      margin-bottom: 70px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(11, 60, 93, 0.08);
+      border: 1px solid #dceff2;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #dff8f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: #0b3c5d;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #5c7481;
+      font-size: 0.95rem;
+    }
+
+    .vision {
+      background: #eaf8f8;
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 70px;
+    }
+
+    .vision h2 {
+      color: #0b3c5d;
+      margin-bottom: 18px;
+      font-size: 2rem;
+    }
+
+    .vision p {
+      color: #4e6876;
+      max-width: 850px;
+    }
+
+    .coming-soon {
+      text-align: center;
+      background: #0b3c5d;
+      color: white;
+      border-radius: 24px;
+      padding: 55px 30px;
+    }
+
+    .coming-soon h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .coming-soon p {
+      max-width: 650px;
+      margin: auto;
+      color: #dceff2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7f8a;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 65px;
+        padding-bottom: 65px;
+      }
+
+      .vision {
+        padding: 30px 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <header>
-    <h1>TraumaPath</h1>
-    <p>See the injury. Understand the anatomy. Learn the response.</p>
+    <nav>
+      <div class="brand">TraumaPath</div>
+      <div class="nav-label">Interactive Trauma Education</div>
+    </nav>
   </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">See it. Understand it. Remember it.</div>
+
+      <h1>Trauma education made visual.</h1>
+
+      <p>
+        TraumaPath is being built to help students and healthcare learners
+        understand anatomy, injury mechanisms, and emergency-response concepts
+        through interactive visual learning.
+      </p>
+
+      <a href="#platform" class="hero-button">Explore the Vision</a>
+    </div>
+  </section>
 
   <main>
 
-    <section>
-      <h2>Interactive Trauma Education</h2>
+    <section id="platform">
+      <div class="section-heading">
+        <h2>One platform. Multiple ways to learn.</h2>
+        <p>
+          TraumaPath is designed to grow into a complete trauma and anatomy
+          education ecosystem for students, educators, and healthcare learners.
+        </p>
+      </div>
 
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">🫀</div>
+          <h3>TraumaPath Anatomy</h3>
+          <p>
+            Explore human anatomy visually and understand how body systems,
+            organs, bones, vessels, and nerves connect.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🚑</div>
+          <h3>TraumaPath Trauma</h3>
+          <p>
+            Learn how different mechanisms of injury can affect the body,
+            with an emphasis on anatomy, physiology, and clinical understanding.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🩻</div>
+          <h3>TraumaPath Imaging</h3>
+          <p>
+            Build confidence recognizing important concepts through educational
+            X-ray, CT, MRI, and ultrasound examples.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🩺</div>
+          <h3>TraumaPath Skills</h3>
+          <p>
+            Reinforce emergency-care concepts through guided scenarios,
+            visual explanations, and skills-based learning.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>TraumaPath AI</h3>
+          <p>
+            A future AI learning assistant designed to explain trauma and
+            anatomy concepts in clear, understandable language.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎓</div>
+          <h3>TraumaPath Instructor</h3>
+          <p>
+            Future tools for educators, including assignments, quizzes,
+            progress tracking, and learning analytics.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="vision">
+      <h2>Our Vision</h2>
       <p>
-        TraumaPath is being built to transform complex trauma and emergency
-        medical concepts into clear, interactive learning experiences.
+        To become a trusted interactive trauma and anatomy education platform
+        that makes complex medical concepts easier to understand, remember,
+        and apply through immersive learning experiences.
       </p>
     </section>
 
-    <section>
-      <h2>Explore Trauma by Body Region</h2>
-
+    <section class="coming-soon">
+      <h2>TraumaPath is being built now.</h2>
       <p>
-        Learners will be able to explore the human body, select areas of injury,
-        and understand the anatomy, potential trauma, warning signs,
-        and educational response pathways.
-      </p>
-    </section>
-
-    <section>
-      <h2>Built for Learning</h2>
-
-      <p>
-        TraumaPath is designed for students, educators, healthcare learners,
-        emergency-response trainees, and others seeking a better visual
-        understanding of trauma.
+        The first interactive learning experience is in development.
+        Future releases will combine visual anatomy, scenario-based learning,
+        educational animation, and intelligent tutoring.
       </p>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2026 TraumaPath. Educational use only.</p>
+    © 2026 TraumaPath Education. Educational use only.
   </footer>
 
 </body>
