@@ -392,14 +392,18 @@
     </p>
 
     <div class="fact">
-      <strong>Primary Role</strong>
-      Protects the lungs, heart, and other structures within the thorax.
-    </div>
+  <strong>Primary Role</strong>
+  <span id="structureRole">
+    Protects the lungs, heart, and other structures within the thorax.
+  </span>
+</div>
 
-    <div class="fact">
-      <strong>Movement</strong>
-      The ribs move with breathing as the chest expands and contracts.
-    </div>
+<div class="fact">
+  <strong>Function / Movement</strong>
+  <span id="structureMovement">
+    The ribs move with breathing as the chest expands and contracts.
+  </span>
+</div>
 
     <div class="tabs">
       <button class="tab active" onclick="showTab('overview',this)">Overview</button>
@@ -444,30 +448,46 @@
 const structures = {
   ribs:{
     title:"Rib Cage",
-    text:"The rib cage forms a protective framework around the chest and helps support normal breathing mechanics."
+    text:"The rib cage forms a protective framework around the chest and helps support normal breathing mechanics.",
+    role:"Protects the lungs, heart, and other structures within the thorax.",
+    movement:"The ribs elevate and expand during inhalation and move downward during exhalation."
   },
+
   sternum:{
     title:"Sternum",
-    text:"The sternum is the flat bone at the center of the chest that connects with the ribs through cartilage."
+    text:"The sternum is the flat bone at the center of the chest that connects with the ribs through cartilage.",
+    role:"Provides central support for the rib cage and helps protect structures within the chest.",
+    movement:"Moves subtly with the ribs and chest wall as the thorax expands during breathing."
   },
+
   lungs:{
     title:"Lungs",
-    text:"The lungs exchange oxygen and carbon dioxide and expand within the chest during normal breathing."
+    text:"The lungs exchange oxygen and carbon dioxide and expand within the chest during normal breathing.",
+    role:"Bring oxygen into the body and remove carbon dioxide through gas exchange.",
+    movement:"Expand during inhalation and recoil during exhalation as pressure changes within the chest."
   },
+
   pleura:{
     title:"Pleural Space",
-    text:"The pleural space is the thin potential space between the lung surface and the inner chest wall."
+    text:"The pleural space is the thin potential space between the lung surface and the inner chest wall.",
+    role:"Allows the lungs to move smoothly against the chest wall while helping maintain normal lung expansion.",
+    movement:"Normally contains only a small amount of lubricating fluid as the pleural surfaces glide during breathing."
   },
+
   heart:{
     title:"Heart",
-    text:"The heart pumps blood through the pulmonary and systemic circulations and sits centrally within the chest."
+    text:"The heart pumps blood through the pulmonary and systemic circulations and sits centrally within the chest.",
+    role:"Maintains circulation by pumping blood to the lungs and throughout the body.",
+    movement:"Contracts rhythmically with each heartbeat to propel blood through the circulatory system."
   },
+
   diaphragm:{
     title:"Diaphragm",
-    text:"The diaphragm is the major muscle of breathing and separates the chest cavity from the abdomen."
+    text:"The diaphragm is the major muscle of breathing and separates the chest cavity from the abdomen.",
+    role:"Creates the pressure changes that drive normal breathing.",
+    movement:"Contracts and moves downward during inhalation, then relaxes and rises during exhalation."
   }
 };
-
 const conditions = {
   rib:{
     title:"Rib Fracture",
@@ -522,6 +542,18 @@ let activeCondition = "rib";
 let activeTab = "overview";
 
 function showStructure(key,button){
+  document.querySelectorAll(".structure-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+  button.classList.add("active");
+
+  const s = structures[key];
+
+  document.getElementById("structureTitle").textContent = s.title;
+  document.getElementById("structureText").textContent = s.text;
+  document.getElementById("structureRole").textContent = s.role;
+  document.getElementById("structureMovement").textContent = s.movement;
+}
   document.querySelectorAll(".structure-btn")
     .forEach(btn=>btn.classList.remove("active"));
 
