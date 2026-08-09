@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chest Anatomy | TraumaPath</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:#061a2b;
+      color:white;
+      line-height:1.6;
+    }
+
+    header{
+      height:78px;
+      background:#071c30;
+      border-bottom:1px solid #164b65;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 5%;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+    }
+
+    .logo span{
+      color:#21d8e2;
+    }
+
+    .back{
+      color:#9deff2;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .hero{
+      padding:55px 6% 35px;
+      text-align:center;
+      background:linear-gradient(135deg,#071c30,#0c6071);
+    }
+
+    .eyebrow{
+      color:#66edf0;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:13px;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
+
+    .hero h1{
+      font-size:48px;
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      max-width:760px;
+      margin:auto;
+      color:#d3e8ee;
+      font-size:17px;
+    }
+
+    .layout{
+      max-width:1400px;
+      margin:auto;
+      padding:35px 5% 60px;
+      display:grid;
+      grid-template-columns:290px 1fr 360px;
+      gap:25px;
+      align-items:start;
+    }
+
+    .panel{
+      background:#082239;
+      border:1px solid #14546f;
+      border-radius:18px;
+      padding:22px;
+    }
+
+    .panel h2{
+      color:#34dfe6;
+      margin-bottom:14px;
+    }
+
+    .structure-btn,
+    .condition-btn{
+      width:100%;
+      border:1px solid #176487;
+      background:#0b3049;
+      color:white;
+      padding:14px;
+      border-radius:11px;
+      text-align:left;
+      margin-bottom:9px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:.2s;
+    }
+
+    .structure-btn:hover,
+    .condition-btn:hover,
+    .structure-btn.active,
+    .condition-btn.active{
+      background:#0f6879;
+      border-color:#2ce0e6;
+      box-shadow:0 0 12px rgba(44,224,230,.18);
+    }
+
+    .anatomy-stage{
+      min-height:710px;
+      background:
+        radial-gradient(circle at center,#0b526b 0%,#082b42 45%,#061a2b 75%);
+      border:1px solid #154e68;
+      border-radius:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .anatomy-stage img{
+      height:650px;
+      max-width:95%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .label{
+      position:absolute;
+      background:#08283e;
+      border:1px solid #24dce3;
+      color:#dffcff;
+      border-radius:999px;
+      padding:9px 14px;
+      font-size:13px;
+      font-weight:bold;
+      pointer-events:none;
+    }
+
+    .label-ribs{
+      top:28%;
+      left:10%;
+    }
+
+    .label-sternum{
+      top:35%;
+      right:9%;
+    }
+
+    .label-lungs{
+      top:44%;
+      left:8%;
+    }
+
+    .label-heart{
+      top:51%;
+      right:10%;
+    }
+
+    .detail-card h2{
+      font-size:30px;
+      margin-bottom:8px;
+    }
+
+    .detail-card p{
+      color:#c6dae3;
+      margin-bottom:18px;
+    }
+
+    .fact{
+      background:#061827;
+      border:1px solid #16475f;
+      border-radius:12px;
+      padding:15px;
+      margin-bottom:11px;
+    }
+
+    .fact strong{
+      color:#38dfe5;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:22px 0 18px;
+    }
+
+    .tab{
+      border:1px solid #176487;
+      background:#09283f;
+      color:white;
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    .tab.active{
+      background:#1bcbd4;
+      color:#03202d;
+      font-weight:bold;
+    }
+
+    .lesson-box{
+      background:#061827;
+      border:1px solid #16475f;
+      border-radius:14px;
+      padding:18px;
+    }
+
+    .lesson-box h3{
+      color:#38dfe5;
+      margin-bottom:10px;
+    }
+
+    .lesson-box p{
+      color:#c8dbe3;
+      margin-bottom:12px;
+    }
+
+    .callout{
+      margin-top:22px;
+      border-left:4px solid #2ce1e7;
+      background:#092b41;
+      border-radius:10px;
+      padding:16px;
+      color:#c9e7ed;
+    }
+
+    .disclaimer{
+      max-width:1300px;
+      margin:0 auto 35px;
+      padding:0 5%;
+      color:#8faab7;
+      font-size:12px;
+      text-align:center;
+    }
+
+    footer{
+      border-top:1px solid #163f55;
+      text-align:center;
+      padding:25px;
+      color:#819ca8;
+      font-size:13px;
+    }
+
+    @media(max-width:1000px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .anatomy-stage{
+        min-height:600px;
+      }
+
+      .anatomy-stage img{
+        height:560px;
+      }
+
+      .label{
+        display:none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Trauma<span>Path</span></div>
+  <a class="back" href="explore.html">← Back to Human Body</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Chest Learning Module</div>
+  <h1>Understand the Chest From the Inside Out</h1>
+  <p>
+    Explore major chest structures, then connect normal anatomy to common
+    traumatic conditions and the physiological changes they can cause.
+  </p>
+</section>
+
+<main class="layout">
+
+  <aside class="panel">
+    <h2>Chest Structures</h2>
+
+    <button class="structure-btn active"
+      onclick="showStructure('ribs',this)">
+      Rib Cage
+    </button>
+
+    <button class="structure-btn"
+      onclick="showStructure('sternum',this)">
+      Sternum
+    </button>
+
+    <button class="structure-btn"
+      onclick="showStructure('lungs',this)">
+      Lungs
+    </button>
+
+    <button class="structure-btn"
+      onclick="showStructure('pleura',this)">
+      Pleural Space
+    </button>
+
+    <button class="structure-btn"
+      onclick="showStructure('heart',this)">
+      Heart
+    </button>
+
+    <button class="structure-btn"
+      onclick="showStructure('diaphragm',this)">
+      Diaphragm
+    </button>
+
+    <h2 style="margin-top:28px;">Trauma Topics</h2>
+
+    <button class="condition-btn active"
+      onclick="showCondition('rib',this)">
+      Rib Fracture
+    </button>
+
+    <button class="condition-btn"
+      onclick="showCondition('flail',this)">
+      Flail Chest
+    </button>
+
+    <button class="condition-btn"
+      onclick="showCondition('pneumo',this)">
+      Pneumothorax
+    </button>
+
+    <button class="condition-btn"
+      onclick="showCondition('tension',this)">
+      Tension Pneumothorax
+    </button>
+
+    <button class="condition-btn"
+      onclick="showCondition('hemo',this)">
+      Hemothorax
+    </button>
+
+    <button class="condition-btn"
+      onclick="showCondition('contusion',this)">
+      Pulmonary Contusion
+    </button>
+  </aside>
+
+  <section class="anatomy-stage">
+
+    <img
+      src="assets/traumapath-anatomy.png"
+      alt="Anterior human anatomy model showing skeletal and muscular anatomy"
+    >
+
+    <div class="label label-ribs">Rib Cage</div>
+    <div class="label label-sternum">Sternum</div>
+    <div class="label label-lungs">Lungs</div>
+    <div class="label label-heart">Heart</div>
+
+  </section>
+
+  <aside class="panel detail-card">
+
+    <div style="color:#2fe0e6;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;">
+      Selected Structure
+    </div>
+
+    <h2 id="structureTitle">Rib Cage</h2>
+
+    <p id="structureText">
+      The rib cage forms a protective framework around the chest and helps
+      support normal breathing mechanics.
+    </p>
+
+    <div class="fact">
+      <strong>Primary Role</strong>
+      Protects the lungs, heart, and other structures within the thorax.
+    </div>
+
+    <div class="fact">
+      <strong>Movement</strong>
+      The ribs move with breathing as the chest expands and contracts.
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('overview',this)">Overview</button>
+      <button class="tab" onclick="showTab('mechanism',this)">Mechanism</button>
+      <button class="tab" onclick="showTab('changes',this)">Inside the Body</button>
+      <button class="tab" onclick="showTab('signs',this)">Signs & Symptoms</button>
+    </div>
+
+    <div class="lesson-box" id="lessonBox">
+      <h3>Rib Fracture — Overview</h3>
+      <p>
+        A rib fracture is a break in one or more ribs. Pain can limit deep
+        breathing and nearby tissues may also be affected.
+      </p>
+      <p>
+        TraumaPath connects the injury back to normal anatomy so the learner
+        can understand why symptoms occur.
+      </p>
+    </div>
+
+    <div class="callout">
+      <strong>Learning Goal:</strong>
+      Follow the sequence from normal structure → injury → physiological change
+      → observable signs.
+    </div>
+
+  </aside>
+
+</main>
+
+<p class="disclaimer">
+  TraumaPath is for educational use only. It does not diagnose injuries and is
+  not a substitute for professional medical evaluation or emergency care.
+</p>
+
+<footer>
+  © 2026 TraumaPath Education • See it. Understand it. Remember it.
+</footer>
+
+<script>
+
+const structures = {
+  ribs:{
+    title:"Rib Cage",
+    text:"The rib cage forms a protective framework around the chest and helps support normal breathing mechanics."
+  },
+  sternum:{
+    title:"Sternum",
+    text:"The sternum is the flat bone at the center of the chest that connects with the ribs through cartilage."
+  },
+  lungs:{
+    title:"Lungs",
+    text:"The lungs exchange oxygen and carbon dioxide and expand within the chest during normal breathing."
+  },
+  pleura:{
+    title:"Pleural Space",
+    text:"The pleural space is the thin potential space between the lung surface and the inner chest wall."
+  },
+  heart:{
+    title:"Heart",
+    text:"The heart pumps blood through the pulmonary and systemic circulations and sits centrally within the chest."
+  },
+  diaphragm:{
+    title:"Diaphragm",
+    text:"The diaphragm is the major muscle of breathing and separates the chest cavity from the abdomen."
+  }
+};
+
+const conditions = {
+  rib:{
+    title:"Rib Fracture",
+    overview:"A rib fracture is a break in one or more ribs. Pain can limit deep breathing and nearby tissues may also be affected.",
+    mechanism:"Direct impact or compression of the chest can exceed the strength of a rib and create a fracture.",
+    changes:"Pain and local tissue injury may alter breathing mechanics. Depending on severity, nearby structures can also be injured.",
+    signs:"Common findings can include localized tenderness, pain with breathing or movement, and difficulty taking a deep breath."
+  },
+
+  flail:{
+    title:"Flail Chest",
+    overview:"Flail chest occurs when multiple rib fractures create an unstable segment of the chest wall.",
+    mechanism:"Several adjacent ribs fractured in more than one place can separate a section of the chest wall from normal movement.",
+    changes:"The unstable segment can interfere with efficient ventilation and may be associated with underlying lung injury.",
+    signs:"Severe chest pain, respiratory distress, abnormal chest-wall motion, and difficulty breathing may occur."
+  },
+
+  pneumo:{
+    title:"Pneumothorax",
+    overview:"A pneumothorax occurs when air enters the pleural space between the lung and chest wall.",
+    mechanism:"Trauma can create a pathway that allows air to enter the pleural space.",
+    changes:"Air in the pleural space can interfere with normal lung expansion and reduce ventilation on the affected side.",
+    signs:"Chest pain, shortness of breath, rapid breathing, and reduced breath sounds may occur."
+  },
+
+  tension:{
+    title:"Tension Pneumothorax",
+    overview:"Tension pneumothorax is a severe form of pneumothorax in which pressure continues to increase inside the chest.",
+    mechanism:"Air enters the pleural space but cannot escape effectively.",
+    changes:"Increasing pressure can further compress the affected lung and interfere with circulation through major chest vessels.",
+    signs:"Severe respiratory distress, low blood pressure, worsening circulation, and rapid clinical deterioration can occur."
+  },
+
+  hemo:{
+    title:"Hemothorax",
+    overview:"A hemothorax occurs when blood collects in the pleural space around the lung.",
+    mechanism:"Trauma may damage blood vessels or tissues inside the chest and cause internal bleeding.",
+    changes:"Accumulating blood can compress the lung while also contributing to blood loss.",
+    signs:"Breathing difficulty, chest pain, rapid heart rate, weakness, and signs of reduced circulation may occur."
+  },
+
+  contusion:{
+    title:"Pulmonary Contusion",
+    overview:"A pulmonary contusion is bruising of lung tissue caused by trauma.",
+    mechanism:"Blunt force can injure small blood vessels and lung tissue without necessarily tearing the lung.",
+    changes:"Blood and fluid can accumulate within injured lung tissue and interfere with normal gas exchange.",
+    signs:"Shortness of breath, low oxygen levels, chest discomfort, coughing, and worsening breathing difficulty may occur."
+  }
+};
+
+let activeCondition = "rib";
+let activeTab = "overview";
+
+function showStructure(key,button){
+  document.querySelectorAll(".structure-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+  button.classList.add("active");
+
+  document.getElementById("structureTitle").textContent = structures[key].title;
+  document.getElementById("structureText").textContent = structures[key].text;
+}
+
+function showCondition(key,button){
+  activeCondition = key;
+
+  document.querySelectorAll(".condition-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderLesson();
+}
+
+function showTab(tab,button){
+  activeTab = tab;
+
+  document.querySelectorAll(".tab")
+    .forEach(btn=>btn.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderLesson();
+}
+
+function renderLesson(){
+  const c = conditions[activeCondition];
+
+  const labels = {
+    overview:"Overview",
+    mechanism:"Injury Mechanism",
+    changes:"What's Happening Inside",
+    signs:"Signs & Symptoms"
+  };
+
+  document.getElementById("lessonBox").innerHTML = `
+    <h3>${c.title} — ${labels[activeTab]}</h3>
+    <p>${c[activeTab]}</p>
+  `;
+}
+
+</script>
+
+</body>
+</html>
