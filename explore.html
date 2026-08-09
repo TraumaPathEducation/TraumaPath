@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Explore the Human Body | TraumaPath</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#061a2b;
+  color:white;
+  min-height:100vh;
+}
+
+header{
+  height:78px;
+  border-bottom:1px solid #164b65;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+  background:#071c30;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#20d5df;
+}
+
+.back{
+  color:#9eeff2;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.page{
+  max-width:1450px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:290px 1fr 350px;
+  gap:28px;
+  padding:34px 4%;
+}
+
+.left h1{
+  font-size:42px;
+  line-height:1.05;
+  margin-bottom:14px;
+}
+
+.left h1 span{
+  color:#21d9e2;
+}
+
+.intro{
+  color:#c4dbe4;
+  margin-bottom:28px;
+}
+
+.region{
+  width:100%;
+  background:#09263c;
+  border:1px solid #176184;
+  color:white;
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:10px;
+  text-align:left;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.region.active{
+  border:2px solid #24dae3;
+  background:#0d5267;
+  box-shadow:0 0 18px rgba(36,218,227,.25);
+}
+
+.region.disabled{
+  opacity:.55;
+  cursor:default;
+}
+
+.skeleton-area{
+  position:relative;
+  min-height:780px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at center,#0c4d66 0%,#08283e 45%,#061a2b 75%);
+  border-radius:26px;
+  overflow:hidden;
+  border:1px solid #144963;
+}
+
+.figure-title{
+  position:absolute;
+  top:24px;
+  left:30px;
+  color:#8cecf0;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+}
+
+svg{
+  height:700px;
+  width:auto;
+  max-width:95%;
+}
+
+.bone{
+  fill:#e5e1d2;
+  stroke:#a5b0aa;
+  stroke-width:2;
+}
+
+.rib{
+  fill:none;
+  stroke:#e5e1d2;
+  stroke-width:8;
+  stroke-linecap:round;
+}
+
+.spine{
+  fill:#ded9c9;
+  stroke:#9ea8a2;
+  stroke-width:2;
+}
+
+.chest-zone{
+  fill:rgba(31,218,226,.08);
+  stroke:#27e1e7;
+  stroke-width:3;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.chest-zone:hover{
+  fill:rgba(31,218,226,.22);
+  filter:drop-shadow(0 0 10px #1ddde5);
+}
+
+.pulse{
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:.65}
+  50%{opacity:1}
+}
+
+.right{
+  background:#071f34;
+  border:1px solid #145474;
+  border-radius:20px;
+  padding:24px;
+  height:max-content;
+}
+
+.selected{
+  color:#28d9df;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+}
+
+.right h2{
+  font-size:34px;
+  margin:5px 0 8px;
+}
+
+.right .description{
+  color:#b9d1dc;
+  margin-bottom:20px;
+}
+
+.topic{
+  width:100%;
+  color:white;
+  background:#0a314b;
+  border:1px solid #176486;
+  padding:13px 14px;
+  border-radius:12px;
+  margin-bottom:9px;
+  cursor:pointer;
+  text-align:left;
+  font-weight:bold;
+}
+
+.topic:hover,
+.topic.active{
+  background:#0e6476;
+  border-color:#2adbe2;
+}
+
+.lesson{
+  margin-top:25px;
+  background:#061827;
+  border-radius:16px;
+  padding:20px;
+  border:1px solid #15465e;
+}
+
+.lesson h3{
+  color:#29d9df;
+  margin-bottom:10px;
+}
+
+.lesson p{
+  color:#c4d7df;
+  line-height:1.55;
+}
+
+.lesson-step{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid #173c4e;
+}
+
+.lesson-step strong{
+  color:white;
+  display:block;
+  margin-bottom:4px;
+}
+
+.disclaimer{
+  margin-top:22px;
+  font-size:12px;
+  color:#8daab7;
+}
+
+footer{
+  padding:25px;
+  text-align:center;
+  color:#819fac;
+  font-size:13px;
+}
+
+@media(max-width:1000px){
+  .page{
+    grid-template-columns:1fr;
+  }
+
+  .skeleton-area{
+    min-height:650px;
+  }
+
+  svg{
+    height:590px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Trauma<span>Path</span></div>
+  <a class="back" href="index.html">← Back to Home</a>
+</header>
+
+<div class="page">
+
+  <aside class="left">
+
+    <h1>Explore the <span>Human Body</span></h1>
+
+    <p class="intro">
+      Select a body region to explore anatomy, common trauma patterns,
+      and the physiology behind what happens inside the body.
+    </p>
+
+    <button class="region disabled">Head & Neck — Coming Soon</button>
+    <button class="region active" onclick="selectChest()">Chest</button>
+    <button class="region disabled">Abdomen — Coming Soon</button>
+    <button class="region disabled">Pelvis & Hips — Coming Soon</button>
+    <button class="region disabled">Upper Extremities — Coming Soon</button>
+    <button class="region disabled">Lower Extremities — Coming Soon</button>
+    <button class="region disabled">Hands & Wrists — Coming Soon</button>
+    <button class="region disabled">Feet & Ankles — Coming Soon</button>
+
+  </aside>
+
+  <section class="skeleton-area">
+
+    <div class="figure-title">Interactive Anatomy — Anterior View</div>
+
+    <svg viewBox="0 0 500 900" aria-label="Front-facing educational human skeleton">
+
+      <!-- skull -->
+      <ellipse class="bone" cx="250" cy="90" rx="62" ry="72"/>
+      <ellipse fill="#061a2b" cx="225" cy="80" rx="15" ry="18"/>
+      <ellipse fill="#061a2b" cx="275" cy="80" rx="15" ry="18"/>
+      <path fill="#061a2b" d="M244 105 L250 92 L256 105 Z"/>
+      <path fill="#061a2b" d="M220 125 Q250 145 280 125 Q250 155 220 125"/>
+
+      <!-- neck -->
+      <rect class="spine" x="238" y="152" width="24" height="50" rx="8"/>
+
+      <!-- shoulders -->
+      <path class="rib" d="M245 205 Q190 190 145 220"/>
+      <path class="rib" d="M255 205 Q310 190 355 220"/>
+
+      <!-- sternum -->
+      <rect class="bone" x="240" y="205" width="20" height="170" rx="10"/>
+
+      <!-- ribs -->
+      <path class="rib" d="M245 225 Q180 210 160 245 Q185 270 245 255"/>
+      <path class="rib" d="M255 225 Q320 210 340 245 Q315 270 255 255"/>
+
+      <path class="rib" d="M245 255 Q175 245 155 285 Q185 315 245 285"/>
+      <path class="rib" d="M255 255 Q325 245 345 285 Q315 315 255 285"/>
+
+      <path class="rib" d="M245 287 Q180 280 165 325 Q190 350 245 315"/>
+      <path class="rib" d="M255 287 Q320 280 335 325 Q310 350 255 315"/>
+
+      <path class="rib" d="M245 318 Q190 320 178 360"/>
+      <path class="rib" d="M255 318 Q310 320 322 360"/>
+
+      <!-- spine -->
+      <rect class="spine" x="240" y="370" width="20" height="190" rx="8"/>
+
+      <!-- pelvis -->
+      <path class="bone" d="M185 540 Q165 570 190 620 Q220 640 250 600 Q280 640 310 620 Q335 570 315 540 Q285 555 250 565 Q215 555 185 540Z"/>
+
+      <!-- arms -->
+      <rect class="bone" x="118" y="220" width="25" height="240" rx="12" transform="rotate(8 130 220)"/>
+      <rect class="bone" x="357" y="220" width="25" height="240" rx="12" transform="rotate(-8 370 220)"/>
+
+      <rect class="bone" x="100" y="448" width="18" height="190" rx="9" transform="rotate(5 110 448)"/>
+      <rect class="bone" x="382" y="448" width="18" height="190" rx="9" transform="rotate(-5 390 448)"/>
+
+      <!-- hands -->
+      <ellipse class="bone" cx="105" cy="655" rx="28" ry="40"/>
+      <ellipse class="bone" cx="395" cy="655" rx="28" ry="40"/>
+
+      <!-- legs -->
+      <rect class="bone" x="205" y="610" width="28" height="185" rx="14"/>
+      <rect class="bone" x="267" y="610" width="28" height="185" rx="14"/>
+
+      <rect class="bone" x="208" y="785" width="22" height="90" rx="11"/>
+      <rect class="bone" x="270" y="785" width="22" height="90" rx="11"/>
+
+      <!-- interactive chest -->
+      <rect
+        id="chestZone"
+        class="chest-zone pulse"
+        x="150"
+        y="195"
+        width="200"
+        height="185"
+        rx="70"
+        onclick="selectChest()"
+      />
+
+      <text x="250" y="295"
+            text-anchor="middle"
+            fill="#55f2f2"
+            font-size="20"
+            font-weight="bold">
+        CHEST
+      </text>
+
+    </svg>
+
+  </section>
+
+  <aside class="right">
+
+    <div class="selected">Selected Region</div>
+
+    <h2>Chest</h2>
+
+    <p class="description">
+      Explore chest anatomy and common traumatic conditions through
+      visual, step-by-step learning.
+    </p>
+
+    <button class="topic active"
+      onclick="showTopic('rib')">
+      Rib Fracture
+    </button>
+
+    <button class="topic"
+      onclick="showTopic('flail')">
+      Flail Chest
+    </button>
+
+    <button class="topic"
+      onclick="showTopic('pneumo')">
+      Pneumothorax
+    </button>
+
+    <button class="topic"
+      onclick="showTopic('tension')">
+      Tension Pneumothorax
+    </button>
+
+    <button class="topic"
+      onclick="showTopic('hemo')">
+      Hemothorax
+    </button>
+
+    <button class="topic"
+      onclick="showTopic('contusion')">
+      Pulmonary Contusion
+    </button>
+
+    <div class="lesson" id="lesson">
+
+      <h3>Rib Fracture</h3>
+
+      <p>
+        A rib fracture is a break in one or more ribs. Injury can produce
+        significant pain and may affect normal breathing mechanics.
+      </p>
+
+      <div class="lesson-step">
+        <strong>1. Normal Anatomy</strong>
+        The rib cage protects the lungs and other structures within the chest.
+      </div>
+
+      <div class="lesson-step">
+        <strong>2. Injury Mechanism</strong>
+        Significant force to the chest can exceed the strength of a rib and
+        produce a fracture.
+      </div>
+
+      <div class="lesson-step">
+        <strong>3. What's Happening Inside</strong>
+        Pain from the injured rib can make deep breathing difficult and nearby
+        tissues may also be affected.
+      </div>
+
+      <div class="lesson-step">
+        <strong>4. Signs & Symptoms</strong>
+        Chest tenderness, pain with breathing or movement, and difficulty
+        taking a deep breath may occur.
+      </div>
+
+    </div>
+
+    <p class="disclaimer">
+      TraumaPath provides educational information only and is not a diagnostic
+      tool or substitute for professional medical evaluation or emergency care.
+    </p>
+
+  </aside>
+
+</div>
+
+<footer>
+  © 2026 TraumaPath Education • See it. Understand it. Remember it.
+</footer>
+
+
+<script>
+
+const lessons = {
+
+rib:{
+title:"Rib Fracture",
+intro:"A rib fracture is a break in one or more ribs. Injury can produce significant pain and may affect normal breathing mechanics.",
+anatomy:"The rib cage protects the lungs and other structures within the chest.",
+mechanism:"Significant force to the chest can exceed the strength of a rib and produce a fracture.",
+inside:"Pain from the injured rib can make deep breathing difficult and nearby tissues may also be affected.",
+signs:"Chest tenderness, pain with breathing or movement, and difficulty taking a deep breath may occur."
+},
+
+flail:{
+title:"Flail Chest",
+intro:"Flail chest occurs when a section of the chest wall becomes mechanically unstable after multiple rib fractures.",
+anatomy:"The ribs normally move together with the chest wall during breathing.",
+mechanism:"Multiple fractures affecting neighboring ribs can separate a segment of the chest wall from normal rib movement.",
+inside:"The unstable segment can interfere with efficient breathing and is often associated with significant underlying chest trauma.",
+signs:"Severe chest pain, breathing difficulty, chest-wall instability, and abnormal movement may occur."
+},
+
+pneumo:{
+title:"Pneumothorax",
+intro:"A pneumothorax occurs when air enters the space between the lung and the chest wall.",
+anatomy:"Normally, the lung stays expanded against the inner chest wall within the pleural cavity.",
+mechanism:"Trauma may allow air to enter the pleural space.",
+inside:"Air in that space can interfere with normal lung expansion and reduce effective ventilation.",
+signs:"Chest pain, shortness of breath, rapid breathing, and reduced breath sounds may occur."
+},
+
+tension:{
+title:"Tension Pneumothorax",
+intro:"A tension pneumothorax is a life-threatening form of pneumothorax in which pressure continues to build inside the chest.",
+anatomy:"The lungs and major structures of the chest normally have room to function within stable pressure relationships.",
+mechanism:"Air enters the pleural space and cannot escape effectively.",
+inside:"Increasing pressure can further collapse the affected lung and interfere with circulation.",
+signs:"Severe breathing difficulty, worsening distress, low blood pressure, and signs of poor circulation can occur."
+},
+
+hemo:{
+title:"Hemothorax",
+intro:"A hemothorax occurs when blood collects within the pleural space around the lung.",
+anatomy:"The pleural space normally contains only a very small amount of lubricating fluid.",
+mechanism:"Chest trauma can damage blood vessels or tissues and cause bleeding into the pleural space.",
+inside:"Accumulating blood may compress the lung and can contribute to significant blood loss.",
+signs:"Breathing difficulty, chest pain, rapid heart rate, weakness, and signs of blood loss may occur."
+},
+
+contusion:{
+title:"Pulmonary Contusion",
+intro:"A pulmonary contusion is bruising of lung tissue caused by chest trauma.",
+anatomy:"Healthy lung tissue allows oxygen and carbon dioxide to move efficiently between air and blood.",
+mechanism:"Blunt force can damage small blood vessels and tissues within the lung.",
+inside:"Fluid and blood within injured lung tissue can interfere with normal gas exchange.",
+signs:"Shortness of breath, chest discomfort, low oxygen levels, coughing, and worsening respiratory symptoms may occur."
+}
+
+};
+
+function showTopic(key){
+
+  const data = lessons[key];
+
+  document.querySelectorAll(".topic")
+    .forEach(button=>button.classList.remove("active"));
+
+  event.currentTarget.classList.add("active");
+
+  document.getElementById("lesson").innerHTML = `
+    <h3>${data.title}</h3>
+
+    <p>${data.intro}</p>
+
+    <div class="lesson-step">
+      <strong>1. Normal Anatomy</strong>
+      ${data.anatomy}
+    </div>
+
+    <div class="lesson-step">
+      <strong>2. Injury Mechanism</strong>
+      ${data.mechanism}
+    </div>
+
+    <div class="lesson-step">
+      <strong>3. What's Happening Inside</strong>
+      ${data.inside}
+    </div>
+
+    <div class="lesson-step">
+      <strong>4. Signs & Symptoms</strong>
+      ${data.signs}
+    </div>
+  `;
+}
+
+function selectChest(){
+  document.getElementById("chestZone").classList.add("pulse");
+}
+
+</script>
+
+</body>
+</html>
