@@ -159,7 +159,13 @@
   left:38%;
   border-radius:40%;
 }
-    
+    #traumaHighlight.pneumo{
+  width:70px;
+  height:95px;
+  top:29%;
+  left:41%;
+  border-radius:45%;
+}
     #traumaHighlight.active{
   opacity:1;
 }
@@ -604,10 +610,12 @@ function showCondition(key,button){
   button.classList.add("active");
 const traumaHighlight = document.getElementById("traumaHighlight");
 
+traumaHighlight.classList.remove("active", "flail", "pneumo");
+
 if(key === "flail"){
   traumaHighlight.classList.add("active", "flail");
-}else{
-  traumaHighlight.classList.remove("active", "flail");
+}else if(key === "pneumo"){
+  traumaHighlight.classList.add("active", "pneumo");
 }
   renderLesson();
 }
