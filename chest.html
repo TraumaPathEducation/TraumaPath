@@ -152,7 +152,15 @@
   transition:opacity .3s ease;
   z-index:2;
 }
-#traumaHighlight.active{
+#traumaHighlight.flail{
+  width:85px;
+  height:105px;
+  top:29%;
+  left:37%;
+  border-radius:40%;
+}
+    
+    #traumaHighlight.active{
   opacity:1;
 }
     
@@ -597,9 +605,9 @@ function showCondition(key,button){
 const traumaHighlight = document.getElementById("traumaHighlight");
 
 if(key === "flail"){
-  traumaHighlight.classList.add("active");
+  traumaHighlight.classList.add("active", "flail");
 }else{
-  traumaHighlight.classList.remove("active");
+  traumaHighlight.classList.remove("active", "flail");
 }
   renderLesson();
 }
