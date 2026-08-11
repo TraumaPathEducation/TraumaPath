@@ -137,7 +137,25 @@
       object-fit:contain;
       display:block;
     }
-
+#traumaHighlight{
+  position:absolute;
+  width:110px;
+  height:135px;
+  top:18%;
+  left:39%;
+  border-radius:45%;
+  background:rgba(44,224,230,0.18);
+  box-shadow:0 0 20px rgba(44,224,230,0.65),
+             0 0 45px rgba(44,224,230,0.35);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease;
+  z-index:2;
+}
+#traumaHighlight.active{
+  opacity:1;
+}
+    
     .label{
       position:absolute;
       background:#08283e;
@@ -377,7 +395,7 @@ cursor:pointer;
       src="assets/traumapath-anatomy.png"
       alt="Anterior human anatomy model showing skeletal and muscular anatomy"
     >
-
+<div id="traumaHighlight"></div>
     <div class="label label-ribs" onclick="showStructure('ribs', this)">Rib Cage</div>
 <div class="label label-sternum" onclick="showStructure('sternum', this)">Sternum</div>
 <div class="label label-lungs" onclick="showStructure('lungs', this)">Lungs</div>
@@ -576,7 +594,13 @@ function showCondition(key,button){
     .forEach(btn=>btn.classList.remove("active"));
 
   button.classList.add("active");
+const traumaHighlight = document.getElementById("traumaHighlight");
 
+if(key === "flail"){
+  traumaHighlight.classList.add("active");
+}else{
+  traumaHighlight.classList.remove("active");
+}
   renderLesson();
 }
 
