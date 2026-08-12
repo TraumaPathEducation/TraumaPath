@@ -168,7 +168,23 @@
   background:rgba(44,224,230,0.28); 
     box-shadow:0 0 28px rgba(44,224,230,0.85), 0 0 55px rgba(44,224,230,0.55);  
 }
-    #traumaHighlight.active{
+
+ #traumaHighlight.tension{   
+width:90px;
+height:115px;
+top:27%;
+left:40%;
+border-radius:45%;
+background:rgba(44,224,230,0.38);
+box-shadow:0 0 35px rgba(44,224,230,1), 0 0 70px rgba(44,224,230,0.70);
+}
+   
+   
+   
+   
+   
+   
+   #traumaHighlight.active{
   opacity:1;
 }
     
@@ -612,12 +628,14 @@ function showCondition(key,button){
   button.classList.add("active");
 const traumaHighlight = document.getElementById("traumaHighlight");
 
-traumaHighlight.classList.remove("active", "flail", "pneumo");
+traumaHighlight.classList.remove("active", "flail", "pneumo","tension");
 
 if(key === "flail"){
   traumaHighlight.classList.add("active", "flail");
 }else if(key === "pneumo"){
   traumaHighlight.classList.add("active", "pneumo");
+}else if(key==="tension"){
+  traumaHighlight.classList.add("active", "tension");
 }
   renderLesson();
 }
