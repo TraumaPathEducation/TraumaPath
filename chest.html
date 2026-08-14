@@ -324,6 +324,23 @@ cursor:pointer;
   font-weight:bold;
   letter-spacing:1px;
 }
+   .lesson-nav{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin:12px 0 14px;
+}
+
+.lesson-nav-btn{
+  border:1px solid #176487;
+  background:#09283f;
+  color:#2fe0e6;
+  padding:9px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:bold;
+}
     .lesson-box{
       background:#061827;
       border:1px solid #16475f;
@@ -532,7 +549,10 @@ cursor:pointer;
         can understand why symptoms occur.
       </p>
     </div>
-
+<div class="lesson-nav">
+  <button id="prevLesson" class="lesson-nav-btn" onclick="navigateLesson(-1)">← Previous</button>
+  <button id="nextLesson" class="lesson-nav-btn" onclick="navigateLesson(1)">Next →</button>
+</div>
     <div class="callout">
       <strong>Learning Goal:</strong>
       Follow the sequence from normal structure → injury → physiological change
@@ -712,7 +732,18 @@ const progressText = {
 document.getElementById("lessonProgress").textContent = progressText[tab];
   renderLesson();
 }
+function navigateLesson(direction){
+  const tabs = ["overview", "mechanism", "changes", "signs"];
+  const currentIndex = tabs.indexOf(activeTab);
+  const newIndex = currentIndex + direction;
 
+  if(newIndex < 0 || newIndex >= tabs.length) return;
+
+  const newTab = tabs[newIndex];
+  const buttons = document.querySelectorAll(".tab");
+
+  showTab(newTab, buttons[newIndex]);
+}
 function renderLesson(){
   const c = conditions[activeCondition];
 
