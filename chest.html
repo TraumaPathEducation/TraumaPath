@@ -695,7 +695,16 @@ function showStructure(key,button){
 
 function showCondition(key,button){
   activeCondition = key;
+activeTab = "overview";
 
+document.querySelectorAll(".tab")
+  .forEach(btn=>btn.classList.remove("active"));
+
+document.querySelector(".tab").classList.add("active");
+
+document.getElementById("lessonProgress").textContent = "STEP 1 OF 4 — OVERVIEW";
+document.getElementById("prevLesson").disabled = true;
+document.getElementById("nextLesson").disabled = false;
   document.querySelectorAll(".condition-btn")
     .forEach(btn=>btn.classList.remove("active"));
 
