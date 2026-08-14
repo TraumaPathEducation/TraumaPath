@@ -312,7 +312,18 @@ cursor:pointer;
       color:#03202d;
       font-weight:bold;
     }
-
+#lessonProgress{
+  display:inline-block;
+  margin:2px 0 14px;
+  padding:7px 12px;
+  background:#09283f;
+  border:1px solid #176487;
+  border-radius:10px;
+  color:#2fe0e6;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
     .lesson-box{
       background:#061827;
       border:1px solid #16475f;
@@ -509,7 +520,7 @@ cursor:pointer;
       <button class="tab" onclick="showTab('changes',this)">Inside the Body</button>
       <button class="tab" onclick="showTab('signs',this)">Signs & Symptoms</button>
     </div>
-
+<div id="lessonProgress">STEP 1 OF 4 — OVERVIEW</div>
     <div class="lesson-box" id="lessonBox">
       <h3>Rib Fracture — Overview</h3>
       <p>
@@ -691,7 +702,14 @@ function showTab(tab,button){
     .forEach(btn=>btn.classList.remove("active"));
 
   button.classList.add("active");
+const progressText = {
+  overview: "STEP 1 OF 4 — OVERVIEW",
+  mechanism: "STEP 2 OF 4 — MECHANISM",
+  changes: "STEP 3 OF 4 — INSIDE THE BODY",
+  signs: "STEP 4 OF 4 — SIGNS & SYMPTOMS"
+};
 
+document.getElementById("lessonProgress").textContent = progressText[tab];
   renderLesson();
 }
 
