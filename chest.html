@@ -759,6 +759,8 @@ let activeCondition = "rib";
 let activeTab = "overview";
 
 function showStructure(key,button){
+  const traumaHighlight = document.getElementById("traumaHighlight");
+  traumaHighlight.classList.remove("active","flail","pneumo","tension","hemo","contusion","rib");
 
   document.querySelectorAll(".structure-btn, .label")
     .forEach(item => item.classList.remove("active"));
