@@ -851,7 +851,7 @@ renderLesson();
 
   if(selectedIndex === quiz.answer){
     buttons[selectedIndex].classList.add("correct");
-    feedback.textContent = "Correct! " + quiz.explanation;
+    feedback.textContent = "✓ Knowledge Check Passed — " + quiz.explanation;
     buttons.forEach(btn => btn.disabled = true);
   }else{
     buttons[selectedIndex].classList.add("wrong");
