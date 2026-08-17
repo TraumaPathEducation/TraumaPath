@@ -827,6 +827,7 @@ function showCondition(key,button){
   activeCondition = key;
 activeTab = "overview";
 document.querySelectorAll(".structure-btn, .label").forEach(item => item.classList.remove("active"));
+  showStructure("ribs");
   
 document.querySelectorAll(".tab")
   .forEach(btn=>btn.classList.remove("active"));
