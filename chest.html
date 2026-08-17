@@ -858,6 +858,8 @@ if(key === "flail"){
   traumaHighlight.classList.add("active","rib");
 }
 renderLesson();
+  document.querySelectorAll("#quizChoices .quiz-choice-btn").forEach(btn => { btn.classList.remove("correct","wrong");btn.disabled = false;});
+  document.getElementById("knowledgeCheck").style.display ="none";
 }
 function showTab(tab,button){
   activeTab = tab;
