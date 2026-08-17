@@ -303,6 +303,28 @@ cursor:pointer;
     box-shadow:0 0 10px #22dce3, 0 0 20px rgba(34,220,227,.55);
     transform:scale(1.08);
 }
+    .label-ribs.active::after,
+    .label-lungs.active::after,
+    .label-diaphragm.active::after{
+    content:"➜";
+      position:absolute;
+      right:-30px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#7ffaff;
+      font-size:24px;
+    }
+    .label-sternum.active::before,
+    .label-heart.active::before,
+    .label-pleura.active::before{
+      content:"←";
+      position:absolute;
+      left:-30px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#7ffaff;
+      font-size:24px;
+    }
     .label-ribs{
       top:28%;
       left:10%;
