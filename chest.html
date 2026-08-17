@@ -277,6 +277,13 @@ box-shadow:0 0 35px rgba(255,165,0,0.95), 0 0 70px rgba(255,140,0,0.65);
     left:48%;
     border-radius:50%;
 }
+    #structureHighlight.diaphragm{
+    width:88px;
+    height:30px;
+    top:43%;
+    left:40%;
+    border-radius:50%;
+}
     .label{
       position:absolute;
       background:#08283e;
@@ -318,6 +325,10 @@ cursor:pointer;
 .label-pleura{
     top:66%;
     right:7%;
+}
+    .label-diaphragm{
+    top:60%;
+    left:8%;
 }
     .detail-card h2{
       font-size:30px;
@@ -612,7 +623,7 @@ cursor:pointer;
 <div class="label label-lungs" onclick="showStructure('lungs', this)">Lungs</div>
     <div class="label label-pleura" onclick="showStructure('pleura', this)">Pleural Space</div>
 <div class="label label-heart" onclick="showStructure('heart', this)">Heart</div>
-
+<div class="label label-diaphragm" onclick="showStructure('diaphragm', this)">Diaphragm</div>
   </section>
 
   <aside class="panel detail-card">
@@ -877,6 +888,9 @@ structureHighlight.classList.remove("active","ribs","sternum","lungs","pleura","
 }
   else if(key === "heart"){
     structureHighlight.classList.add("active","heart");
+}
+  else if(key === "diaphragm"){
+    structureHighlight.classList.add("active","diaphragm");
 }
   document.querySelectorAll(".structure-btn, .label")
     .forEach(item => item.classList.remove("active"));
