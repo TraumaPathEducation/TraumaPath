@@ -246,6 +246,13 @@ box-shadow:0 0 35px rgba(255,165,0,0.95), 0 0 70px rgba(255,140,0,0.65);
     left:39%;
     border-radius:45%;
 }
+    #structureHighlight.sternum{
+    width:28px;
+    height:105px;
+    top:27%;
+    left:48%;
+    border-radius:40%;
+}
     .label{
       position:absolute;
       background:#08283e;
@@ -830,6 +837,9 @@ function showStructure(key,button){
 structureHighlight.classList.remove("active","ribs","sternum","lungs","pleura","heart","diaphragm");
   if(key === "ribs"){
     structureHighlight.classList.add("active","ribs");
+}
+  else if(key === "sternum"){
+    structureHighlight.classList.add("active","sternum");
 }
   document.querySelectorAll(".structure-btn, .label")
     .forEach(item => item.classList.remove("active"));
