@@ -253,6 +253,13 @@ box-shadow:0 0 35px rgba(255,165,0,0.95), 0 0 70px rgba(255,140,0,0.65);
     left:48%;
     border-radius:40%;
 }
+    #structureHighlight.lungs{
+    width:90px;
+    height:90px;
+    top:29%;
+    left:40%;
+    border-radius:48%;
+}
     .label{
       position:absolute;
       background:#08283e;
@@ -840,6 +847,9 @@ structureHighlight.classList.remove("active","ribs","sternum","lungs","pleura","
 }
   else if(key === "sternum"){
     structureHighlight.classList.add("active","sternum");
+}
+  else if(key === "lungs"){
+    structureHighlight.classList.add("active","lungs");
 }
   document.querySelectorAll(".structure-btn, .label")
     .forEach(item => item.classList.remove("active"));
