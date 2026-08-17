@@ -226,7 +226,26 @@ box-shadow:0 0 35px rgba(255,165,0,0.95), 0 0 70px rgba(255,140,0,0.65);
     #traumaHighlight.active{
   opacity:1;
 }
-    
+    #structureHighlight{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+    z-index:3;
+    border:2px solid #7ffaff;
+    background:rgba(44,224,230,0.15);
+    box-shadow:0 0 22px rgba(44,224,230,0.8), 0 0 42px rgba(44,224,230,0.45);
+    transition:opacity .25s ease;
+}
+    #structureHighlight.active{
+    opacity:1;
+}
+    #structureHighlight.ribs{
+    width:110px;
+    height:95px;
+    top:27%;
+    left:39%;
+    border-radius:45%;
+}
     .label{
       position:absolute;
       background:#08283e;
@@ -553,6 +572,7 @@ cursor:pointer;
       alt="Anterior human anatomy model showing skeletal and muscular anatomy"
     >
 <div id="traumaHighlight"></div>
+    <div id="structureHighlight"></div>
     <div class="label label-ribs" onclick="showStructure('ribs', this)">Rib Cage</div>
 <div class="label label-sternum" onclick="showStructure('sternum', this)">Sternum</div>
 <div class="label label-lungs" onclick="showStructure('lungs', this)">Lungs</div>
@@ -805,8 +825,12 @@ let activeTab = "overview";
 
 function showStructure(key,button){
   const traumaHighlight = document.getElementById("traumaHighlight");
+  const structureHighlight = document.getElementById("structureHighlight");
   traumaHighlight.classList.remove("active","flail","pneumo","tension","hemo","contusion","rib");
-
+structureHighlight.classList.remove("active","ribs","sternum","lungs","pleura","heart","diaphragm");
+  if(key === "ribs"){
+    structureHighlight.classList.add("active","ribs");
+}
   document.querySelectorAll(".structure-btn, .label")
     .forEach(item => item.classList.remove("active"));
 
