@@ -239,6 +239,16 @@ box-shadow:0 0 35px rgba(255,165,0,0.95), 0 0 70px rgba(255,140,0,0.65);
     #structureHighlight.active{
     opacity:1;
 }
+    #pleuraArrow{
+      position:absolute;
+      display:none;
+      z-index:20;
+      top:42%;
+      left:32%;
+      color:#7ffaff;
+      font-size:28px;
+      transform:rotate(-35deg);
+    }
     #structureHighlight.ribs{
     width:110px;
     height:95px;
@@ -649,6 +659,7 @@ cursor:pointer;
     >
 <div id="traumaHighlight"></div>
     <div id="structureHighlight"></div>
+    <div id="pleuraArrow">→</div>
     <div class="label label-ribs" onclick="showStructure('ribs', this)">Rib Cage</div>
 <div class="label label-sternum" onclick="showStructure('sternum', this)">Sternum</div>
 <div class="label label-lungs" onclick="showStructure('lungs', this)">Lungs</div>
@@ -903,8 +914,10 @@ let activeTab = "overview";
 function showStructure(key,button){
   const traumaHighlight = document.getElementById("traumaHighlight");
   const structureHighlight = document.getElementById("structureHighlight");
+  const pleuraArrow = document.getElementById("pleuraArrow");
   traumaHighlight.classList.remove("active","flail","pneumo","tension","hemo","contusion","rib");
 structureHighlight.classList.remove("active","ribs","sternum","lungs","pleura","heart","diaphragm");
+  pleuraArrow.style.display = "none";
   if(key === "ribs"){
     structureHighlight.classList.add("active","ribs");
 }
@@ -916,6 +929,7 @@ structureHighlight.classList.remove("active","ribs","sternum","lungs","pleura","
 }
   else if(key === "pleura"){
     structureHighlight.classList.add("active","pleura");
+    pleuraArrow.style.display = "block";
 }
   else if(key === "heart"){
     structureHighlight.classList.add("active","heart");
